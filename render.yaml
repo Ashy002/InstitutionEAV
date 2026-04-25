@@ -7,8 +7,10 @@ services:
     envVars:
       - key: PORT
         value: 8080
-      - key: SPRING_PROFILES_ACTIVE
-        value: render
+      - key: DB_SSLMODE
+        value: require
+      - key: JPA_DDL_AUTO
+        value: update
       - key: DB_HOST
         fromDatabase:
           name: institution-eav-db
