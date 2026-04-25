@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: institution-eav
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: DB_HOST
+        fromDatabase:
+          name: institution-eav-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: institution-eav-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: institution-eav-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: institution-eav-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: institution-eav-db
+          property: password
+
+databases:
+  - name: institution-eav-db
+    plan: free
+    databaseName: institution_eav
+    user: institution_eav_user
