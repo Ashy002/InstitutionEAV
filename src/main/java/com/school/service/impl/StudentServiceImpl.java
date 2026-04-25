@@ -1,13 +1,13 @@
-package com.example.school.service.impl;
+package com.school.service.impl;
 
-import com.example.school.entity.Role;
-import com.example.school.entity.Student;
-import com.example.school.entity.User;
-import com.example.school.exception.NotFoundException;
-import com.example.school.repository.StudentRepository;
-import com.example.school.repository.UserRepository;
-import com.example.school.service.AccountCredentials;
-import com.example.school.service.StudentService;
+import com.school.entity.Role;
+import com.school.entity.Student;
+import com.school.entity.User;
+import com.school.exception.NotFoundException;
+import com.school.repository.StudentRepository;
+import com.school.repository.UserRepository;
+import com.school.service.AccountCredentials;
+import com.school.service.StudentService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

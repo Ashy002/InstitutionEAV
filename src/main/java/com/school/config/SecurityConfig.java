@@ -1,6 +1,6 @@
-package com.example.school.config;
+package com.school.config;
 
-import com.example.school.repository.UserRepository;
+import com.school.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;

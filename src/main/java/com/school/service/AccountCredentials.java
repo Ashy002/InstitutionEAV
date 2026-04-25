@@ -1,6 +1,6 @@
-package com.example.school.service;
+package com.school.service;
 
-import com.example.school.entity.Role;
+import com.school.entity.Role;
 
 public class AccountCredentials {
   private final String username;

@@ -1,9 +1,9 @@
-package com.example.school.controller;
+package com.school.controller;
 
-import com.example.school.entity.Student;
-import com.example.school.service.BulletinPdfService;
-import com.example.school.service.GradeService;
-import com.example.school.service.StudentService;
+import com.school.entity.Student;
+import com.school.service.BulletinPdfService;
+import com.school.service.GradeService;
+import com.school.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;

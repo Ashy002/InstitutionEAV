@@ -1,9 +1,9 @@
-package com.example.school.service.impl;
+package com.school.service.impl;
 
-import com.example.school.entity.User;
-import com.example.school.exception.NotFoundException;
-import com.example.school.repository.UserRepository;
-import com.example.school.service.UserService;
+import com.school.entity.User;
+import com.school.exception.NotFoundException;
+import com.school.repository.UserRepository;
+import com.school.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,9 +1,9 @@
-package com.example.school.service.impl;
+package com.school.service.impl;
 
-import com.example.school.entity.Grade;
-import com.example.school.exception.NotFoundException;
-import com.example.school.repository.GradeRepository;
-import com.example.school.service.GradeService;
+import com.school.entity.Grade;
+import com.school.exception.NotFoundException;
+import com.school.repository.GradeRepository;
+import com.school.service.GradeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

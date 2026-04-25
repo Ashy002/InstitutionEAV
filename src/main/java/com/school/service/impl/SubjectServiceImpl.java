@@ -1,9 +1,9 @@
-package com.example.school.service.impl;
+package com.school.service.impl;
 
-import com.example.school.entity.Subject;
-import com.example.school.exception.NotFoundException;
-import com.example.school.repository.SubjectRepository;
-import com.example.school.service.SubjectService;
+import com.school.entity.Subject;
+import com.school.exception.NotFoundException;
+import com.school.repository.SubjectRepository;
+import com.school.service.SubjectService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class SubjectServiceImpl implements SubjectService {
   }
 
   @Override
-  public java.util.List<com.example.school.entity.Subject> findByProfessorId(Long professorId) {
+  public java.util.List<com.school.entity.Subject> findByProfessorId(Long professorId) {
     return repo.findByProfessorId(professorId);
   }
 

@@ -12,7 +12,7 @@
     <relativePath/>
 </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>com.school</groupId>
     <artifactId>school-management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>school-management</name>
@@ -61,13 +61,11 @@
     <version>1.2</version> <scope>provided</scope> 
 </dependency>
 
-        <!-- MYSQL -->
-        <dependency>
+        <!-- POSTGRESQL -->
+      
             <dependency>
               <groupId>org.postgresql</groupId>
               <artifactId>postgresql</artifactId>
-           </dependency>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- PDF -->

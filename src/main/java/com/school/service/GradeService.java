@@ -1,6 +1,6 @@
-package com.example.school.service;
+package com.school.service;
 
-import com.example.school.entity.Grade;
+import com.school.entity.Grade;
 import java.util.List;
 
 public interface GradeService {

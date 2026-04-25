@@ -1,9 +1,9 @@
-package com.example.school.service.impl;
+package com.school.service.impl;
 
-import com.example.school.repository.GradeRepository;
-import com.example.school.repository.StudentRepository;
-import com.example.school.repository.SubjectRepository;
-import com.example.school.service.StatsService;
+import com.school.repository.GradeRepository;
+import com.school.repository.StudentRepository;
+import com.school.repository.SubjectRepository;
+import com.school.service.StatsService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

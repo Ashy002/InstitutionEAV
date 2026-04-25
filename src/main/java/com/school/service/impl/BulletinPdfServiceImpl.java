@@ -1,8 +1,8 @@
-package com.example.school.service.impl;
+package com.school.service.impl;
 
-import com.example.school.service.BulletinPdfService;
-import com.example.school.service.GradeService;
-import com.example.school.service.StudentService;
+import com.school.service.BulletinPdfService;
+import com.school.service.GradeService;
+import com.school.service.StudentService;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;

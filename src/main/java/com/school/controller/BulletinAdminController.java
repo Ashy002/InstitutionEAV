@@ -1,8 +1,8 @@
-package com.example.school.controller;
+package com.school.controller;
 
-import com.example.school.service.GradeService;
-import com.example.school.service.StudentService;
-import com.example.school.entity.Student;
+import com.school.service.GradeService;
+import com.school.service.StudentService;
+import com.school.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

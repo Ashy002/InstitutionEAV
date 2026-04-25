@@ -1,11 +1,11 @@
-package com.example.school.controller;
+package com.school.controller;
 
-import com.example.school.entity.Role;
-import com.example.school.entity.Student;
-import com.example.school.service.BulletinPdfService;
-import com.example.school.service.GradeService;
-import com.example.school.service.StudentService;
-import com.example.school.service.UserService;
+import com.school.entity.Role;
+import com.school.entity.Student;
+import com.school.service.BulletinPdfService;
+import com.school.service.GradeService;
+import com.school.service.StudentService;
+import com.school.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;

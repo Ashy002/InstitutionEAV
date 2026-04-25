@@ -1,6 +1,6 @@
-package com.example.school.service;
+package com.school.service;
 
-import com.example.school.entity.User;
+import com.school.entity.User;
 
 public interface UserService {
   User findByUsername(String username);

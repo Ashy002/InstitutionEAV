@@ -1,8 +1,8 @@
-package com.example.school.controller;
+package com.school.controller;
 
-import com.example.school.entity.Subject;
-import com.example.school.service.ProfessorService;
-import com.example.school.service.SubjectService;
+import com.school.entity.Subject;
+import com.school.service.ProfessorService;
+import com.school.service.SubjectService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

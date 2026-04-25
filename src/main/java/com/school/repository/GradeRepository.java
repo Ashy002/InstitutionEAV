@@ -1,6 +1,6 @@
-package com.example.school.repository;
+package com.school.repository;
 
-import com.example.school.entity.Grade;
+import com.school.entity.Grade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

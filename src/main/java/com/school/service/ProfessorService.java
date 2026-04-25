@@ -1,6 +1,6 @@
-package com.example.school.service;
+package com.school.service;
 
-import com.example.school.entity.Professor;
+import com.school.entity.Professor;
 
 import java.util.List;
 

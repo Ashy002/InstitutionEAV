@@ -1,11 +1,11 @@
-package com.example.school.config;
+package com.school.config;
 
-import com.example.school.entity.Professor;
-import com.example.school.entity.Student;
-import com.example.school.entity.Subject;
-import com.example.school.service.ProfessorService;
-import com.example.school.service.StudentService;
-import com.example.school.service.SubjectService;
+import com.school.entity.Professor;
+import com.school.entity.Student;
+import com.school.entity.Subject;
+import com.school.service.ProfessorService;
+import com.school.service.StudentService;
+import com.school.service.SubjectService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

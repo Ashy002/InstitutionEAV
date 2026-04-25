@@ -1,6 +1,6 @@
-package com.example.school.controller;
+package com.school.controller;
 
-import com.example.school.service.*;
+import com.school.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

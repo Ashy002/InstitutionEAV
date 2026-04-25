@@ -1,8 +1,8 @@
-package com.example.school.controller;
+package com.school.controller;
 
-import com.example.school.entity.Role;
-import com.example.school.service.SubjectService;
-import com.example.school.service.UserService;
+import com.school.entity.Role;
+import com.school.service.SubjectService;
+import com.school.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
