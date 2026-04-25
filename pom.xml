@@ -63,8 +63,10 @@
 
         <!-- MYSQL -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <dependency>
+              <groupId>org.postgresql</groupId>
+              <artifactId>postgresql</artifactId>
+           </dependency>
             <scope>runtime</scope>
         </dependency>
 
