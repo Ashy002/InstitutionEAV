@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::section})}">
+<section>
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h1 class="m-0">📋 Bulletin – <span th:text="${student.firstName + ' ' + student.lastName}">Nom</span></h1>
+    <div class="d-flex gap-2 flex-wrap">
+      <a class="btn btn-outline-primary" th:href="${backUrl} ?: @{/admin/bulletins}">← Retour</a>
+      <a class="btn btn-outline-primary" th:href="${pdfUrl}" target="_blank">📄 PDF</a>
+      <a class="btn btn-success" th:href="@{/admin/grades/new(studentId=${student.id})}">+ Note</a>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1"><b>Email :</b> <span th:text="${student.email}">x</span></p>
+          <p class="mb-0"><b>Classe :</b> <span class="badge bg-secondary" th:text="${student.classroom}">L1</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Matière</th><th class="text-center">Coef</th><th class="text-center">Note /20</th><th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="g : ${grades}">
+          <td th:text="${g.subject.name}">Math</td>
+          <td class="text-center" th:text="${g.subject.coefficient}">1</td>
+          <td class="text-center fw-bold"
+              th:text="${#numbers.formatDecimal(g.value,1,2)}"
+              th:class="${g.value >= 10 ? 'text-center fw-bold text-success' : 'text-center fw-bold text-danger'}">10</td>
+          <td class="text-end">
+            <div class="d-flex gap-1 justify-content-end">
+              <a class="btn btn-sm btn-primary" th:href="@{|/admin/grades/${g.id}/edit(studentId=${student.id})|}">Modifier</a>
+              <form th:action="@{|/admin/grades/${g.id}/delete(studentId=${student.id})|}" method="post" class="d-inline">
+                <button class="btn btn-sm btn-danger" onclick="return confirm('Supprimer cette note ?')">Supprimer</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(grades)}">
+          <td colspan="4" class="text-center text-muted fst-italic">Aucune note enregistrée</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert" th:classappend="${weightedAverage >= 10 ? 'alert-success' : 'alert-warning'}">
+    <strong>Moyenne pondérée :</strong>
+    <span class="fs-5" th:text="${#numbers.formatDecimal(weightedAverage, 1, 2)}">0.00</span> / 20
+    <span th:if="${weightedAverage >= 10}" class="ms-2 badge bg-success">✓ Admis</span>
+    <span th:unless="${weightedAverage >= 10 or #lists.isEmpty(grades)}" class="ms-2 badge bg-warning text-dark">⚠ En dessous de la moyenne</span>
+  </div>
+
+</section>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::section})}">
+<section>
+
+  <div class="alert alert-success" th:if="${createdAccount != null}">
+    ✅ Compte créé — Rôle: <b th:text="${createdAccount.role}">STUDENT</b> —
+    Username: <b th:text="${createdAccount.username}">user</b> —
+    Mot de passe: <b th:text="${createdAccount.rawPassword}">pass</b>
+    <div class="small text-muted">Transmettez ces informations à l'étudiant.</div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h1 class="m-0">🎓 Étudiants</h1>
+    <div class="d-flex gap-2 flex-wrap">
+      <a class="btn btn-outline-primary" th:href="@{/admin/dashboard}">← Retour</a>
+      <a class="btn btn-success" th:href="@{/admin/students/new}">+ Nouveau</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th>Classe</th><th>Prénom</th><th>Nom</th><th class="d-none d-md-table-cell">Email</th><th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="s : ${students}">
+          <td><span class="badge bg-secondary" th:text="${s.classroom}">L1</span></td>
+          <td th:text="${s.firstName}">Ana</td>
+          <td th:text="${s.lastName}">Paul</td>
+          <td class="d-none d-md-table-cell text-muted small" th:text="${s.email}">a@b.com</td>
+          <td class="text-end">
+            <div class="d-flex gap-1 justify-content-end flex-wrap">
+              <a class="btn btn-sm btn-info text-white" th:href="@{|/admin/students/${s.id}/bulletin|}">Bulletin</a>
+              <a class="btn btn-sm btn-primary" th:href="@{|/admin/students/${s.id}/edit|}">Modifier</a>
+              <form th:action="@{|/admin/students/${s.id}/delete|}" method="post" class="d-inline">
+                <button class="btn btn-sm btn-danger" onclick="return confirm('Supprimer cet étudiant ?')">Supprimer</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(students)}">
+          <td colspan="5" class="text-center text-muted">Aucun étudiant enregistré</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</html>

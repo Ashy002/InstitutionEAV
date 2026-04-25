@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::section})}">
+<section>
+
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <h1 class="m-0">🎓 Espace Étudiant</h1>
+  </div>
+
+  <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+  <p class="text-muted mb-3">
+    Cliquez sur <b>Voir mon bulletin</b> puis entrez votre code personnel pour accéder à votre bulletin.
+  </p>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Classe</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th class="d-none d-md-table-cell">Email</th>
+          <th class="text-center">Bulletin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="s : ${allStudents}">
+          <td><span class="badge bg-secondary" th:text="${s.classroom}">L1</span></td>
+          <td th:text="${s.firstName}">Prénom</td>
+          <td th:text="${s.lastName}">Nom</td>
+          <td class="d-none d-md-table-cell text-muted small" th:text="${s.email}">email</td>
+          <td class="text-center">
+            <button class="btn btn-primary btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#codeModal"
+                    th:attr="data-student-id=${s.id}">
+              📋 Voir mon bulletin
+            </button>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(allStudents)}">
+          <td colspan="5" class="text-center text-muted">Aucun étudiant enregistré.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal saisie du code -->
+  <div class="modal fade" id="codeModal" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="codeModalLabel">🔐 Accès au bulletin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form th:action="@{/student/bulletin}" method="post">
+          <!-- studentId mis à jour dynamiquement via JS -->
+          <input type="hidden" name="studentId" id="modalStudentId" value="" />
+          <div class="modal-body">
+            <p class="text-muted small mb-3">
+              Veuillez entrer votre code personnel pour accéder à votre bulletin.
+            </p>
+            <label for="code" class="form-label fw-semibold">
+              Veuillez entrer votre code ici pour voir le bulletin
+            </label>
+            <input type="password"
+                   class="form-control"
+                   id="code"
+                   name="code"
+                   required
+                   placeholder="Entrez votre code secret" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Voir mon bulletin →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS : passer le studentId au modal -->
+  <script>
+    document.getElementById('codeModal').addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget;
+      var studentId = button.getAttribute('data-student-id');
+      document.getElementById('modalStudentId').value = studentId;
+    });
+  </script>
+
+</section>
+</html>

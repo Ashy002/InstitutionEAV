@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::section})}">
+<section>
+  <div class="alert alert-success" th:if="${createdAccount != null}">
+    ✅ Compte créé — Username: <b th:text="${createdAccount.username}">user</b> —
+    Mot de passe: <b th:text="${createdAccount.rawPassword}">pass</b>
+    <div class="small text-muted">Transmettez ces informations au professeur.</div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h1 class="m-0">👨‍🏫 Professeurs</h1>
+    <div class="d-flex gap-2 flex-wrap">
+      <a class="btn btn-outline-primary" th:href="@{/admin/dashboard}">← Retour</a>
+      <a class="btn btn-success" th:href="@{/admin/professors/new}">+ Nouveau</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr><th>Prénom</th><th>Nom</th><th class="d-none d-md-table-cell">Email</th><th class="text-end">Actions</th></tr>
+      </thead>
+      <tbody>
+        <tr th:each="p : ${professors}">
+          <td th:text="${p.firstName}">Jean</td>
+          <td th:text="${p.lastName}">Dupont</td>
+          <td class="d-none d-md-table-cell text-muted small" th:text="${p.email}">x@y.com</td>
+          <td class="text-end">
+            <div class="d-flex gap-1 justify-content-end">
+              <a class="btn btn-sm btn-primary" th:href="@{|/admin/professors/${p.id}/edit|}">Modifier</a>
+              <form th:action="@{|/admin/professors/${p.id}/delete|}" method="post" class="d-inline">
+                <button class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ce professeur ?')">Supprimer</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(professors)}">
+          <td colspan="4" class="text-center text-muted">Aucun professeur enregistré</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</html>

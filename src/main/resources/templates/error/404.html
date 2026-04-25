@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{layout/base :: layout(~{::section})}">
+  <section>
+    <div class="text-center py-5">
+      <div style="font-size:5rem">🔍</div>
+      <h1 class="display-4">404</h1>
+      <p class="lead">Page introuvable</p>
+      <p class="text-muted" th:text="${message}">La ressource demandée n'existe pas.</p>
+      <a class="btn btn-primary mt-3" th:href="@{/post-login}">← Retour à l'accueil</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>
