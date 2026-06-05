@@ -81,4 +81,38 @@ public class StatsServiceImpl implements StatsService {
     out.sort(Comparator.comparing(StudentAverage::classroom).thenComparing(Comparator.comparing(StudentAverage::weightedAverage).reversed()));
     return out;
   }
+
+  @Override
+  public List<StatsService.ClassroomAverage> averagesByClassroom() {
+    var students = studentRepository.findAll();
+    var grades = gradeRepository.findAll();
+    
+    // Grouper les étudiants par classe
+    java.util.Map<String, java.util.List<com.school.entity.Student>> studentsByClass = new java.util.HashMap<>();
+    for (var st : students) {
+      studentsByClass.computeIfAbsent(st.getClassroom(), k -> new java.util.ArrayList<>()).add(st);
+    }
+    
+    List<StatsService.ClassroomAverage> out = new ArrayList<>();
+    for (var entry : studentsByClass.entrySet()) {
+      String classroom = entry.getKey();
+      var classroomStudents = entry.getValue();
+      
+      double sum = 0.0, coefSum = 0.0;
+      for (var st : classroomStudents) {
+        for (var g : grades) {
+          if (g.getStudent() != null && g.getStudent().getId().equals(st.getId())) {
+            int coef = (g.getSubject() != null && g.getSubject().getCoefficient() != null) ? g.getSubject().getCoefficient() : 1;
+            sum += g.getValue() * coef;
+            coefSum += coef;
+          }
+        }
+      }
+      
+      double avg = coefSum == 0.0 ? 0.0 : sum / coefSum;
+      out.add(new ClassroomAverage(classroom, avg));
+    }
+    
+    out.sort(Comparator.comparing(ClassroomAverage::classroom));
+    return out;
 }

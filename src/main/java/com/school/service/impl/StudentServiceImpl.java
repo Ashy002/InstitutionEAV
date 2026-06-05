@@ -16,6 +16,7 @@ import java.security.SecureRandom;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class StudentServiceImpl implements StudentService {
 
   private final StudentRepository repo;
@@ -36,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
     return repo.findById(id).orElseThrow(() -> new NotFoundException("Etudiant introuvable: " + id));
   }
 
-  @Override public Student save(Student student) { return repo.save(student); }
+  @Override @Transactional public Student save(Student student) { return repo.save(student); }
 
   @Override
   @Transactional

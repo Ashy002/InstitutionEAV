@@ -46,11 +46,11 @@ public class DataInitializer {
 
         // 2. Professor
         Professor prof = professorRepository.findAll().stream().findFirst().orElseGet(() -> 
-            professorRepository.save(new Professor("Jean", "Dupont", "jean.dupont@school.com"))
+            professorRepository.save(new Professor("Jean", "Dupont", "jeandupont@gmail.com"))
         );
 
         if (!userRepository.existsByUsername("prof1")) {
-            User pu = new User("prof1", passwordEncoder.encode("prof123"), Role.PROFESSOR);
+            User pu = new User("professeur", passwordEncoder.encode("profEAV"), Role.PROFESSOR);
             pu.setProfessor(prof);
             userRepository.save(pu);
         }
@@ -79,7 +79,7 @@ public class DataInitializer {
         Optional<User> existingStudentUser = userRepository.findByUsername("Etudiant");
 
         if (existingStudentUser.isEmpty()) {
-            Student st = new Student("Marie", "Paul", "marie.paul@student.com", "L1");
+            Student st = new Student("Sandra", "Paul", "sandrapaul@student.com", "NS1");
             st.setSecretCode("1234");
             st = studentRepository.save(st);
 
@@ -91,6 +91,17 @@ public class DataInitializer {
                 gradeRepository.save(new Grade(15.5, st, math));
                 gradeRepository.save(new Grade(12.0, st, francais));
                 gradeRepository.save(new Grade(14.0, st, anglais));
+            }
+            
+            // Ajouter un étudiant échoué avec des notes faibles
+            Student stFail = new Student("Jean", "Martin", "jean.martin@student.com", "NS1");
+            stFail.setSecretCode("1234");
+            stFail = studentRepository.save(stFail);
+            
+            if (gradeRepository.findByStudentId(stFail.getId()).isEmpty()) {
+                gradeRepository.save(new Grade(6.5, stFail, math));
+                gradeRepository.save(new Grade(7.0, stFail, francais));
+                gradeRepository.save(new Grade(5.5, stFail, anglais));
             }
         } else {
     studentRepository.findAll().forEach(st -> {

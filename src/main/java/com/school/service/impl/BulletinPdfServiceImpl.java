@@ -9,10 +9,12 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayOutputStream;
 
 @Service
+@Transactional(readOnly = true)
 public class BulletinPdfServiceImpl implements BulletinPdfService {
 
   private final StudentService studentService;
@@ -99,7 +101,7 @@ public class BulletinPdfServiceImpl implements BulletinPdfService {
         cs.beginText();
         cs.setFont(PDType1Font.HELVETICA_BOLD, 12);
         cs.newLineAtOffset(margin, y);
-        cs.showText("Moyenne ponderee: " + String.format("%.2f", avg));
+        cs.showText("Moyenne générale: " + String.format("%.2f", avg));
         cs.endText();
       }
 

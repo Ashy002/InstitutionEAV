@@ -30,6 +30,7 @@ public class AdminController {
     model.addAttribute("professorsCount", professorService.findAll().size());
     model.addAttribute("subjectsCount", subjectService.findAll().size());
     model.addAttribute("globalAverage", statsService.globalWeightedAverage());
+    model.addAttribute("classroomAverages", statsService.averagesByClassroom());
     return "admin/dashboard";
   }
 

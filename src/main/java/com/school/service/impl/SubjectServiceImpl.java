@@ -5,10 +5,12 @@ import com.school.exception.NotFoundException;
 import com.school.repository.SubjectRepository;
 import com.school.service.SubjectService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class SubjectServiceImpl implements SubjectService {
 
   private final SubjectRepository repo;
@@ -28,6 +30,7 @@ public class SubjectServiceImpl implements SubjectService {
   }
 
   @Override
+  @Transactional
   public Subject save(Subject subject) {
     return repo.save(subject);
   }
@@ -38,6 +41,7 @@ public class SubjectServiceImpl implements SubjectService {
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     repo.deleteById(id);
   }

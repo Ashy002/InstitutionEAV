@@ -19,6 +19,7 @@ public class StatsController {
   @GetMapping
   public String stats(Model model) {
     model.addAttribute("globalAverage", statsService.globalWeightedAverage());
+    model.addAttribute("classroomAverages", statsService.averagesByClassroom());
     model.addAttribute("subjectAverages", statsService.averagesBySubject());
     model.addAttribute("studentAverages", statsService.averagesByStudent());
     return "admin/stats";
