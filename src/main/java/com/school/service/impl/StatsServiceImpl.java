@@ -115,4 +115,5 @@ public class StatsServiceImpl implements StatsService {
     
     out.sort(Comparator.comparing(ClassroomAverage::classroom));
     return out;
+  }
 }

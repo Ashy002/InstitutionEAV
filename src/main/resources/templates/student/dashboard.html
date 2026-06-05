@@ -56,6 +56,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <form th:action="@{/student/bulletin}" method="post">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
           <!-- studentId mis à jour dynamiquement via JS -->
           <input type="hidden" name="studentId" id="modalStudentId" value="" />
           <div class="modal-body">

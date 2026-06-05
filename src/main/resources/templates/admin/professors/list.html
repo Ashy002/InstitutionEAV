@@ -31,6 +31,7 @@
             <div class="d-flex gap-1 justify-content-end">
               <a class="btn btn-sm btn-primary" th:href="@{|/admin/professors/${p.id}/edit|}">Modifier</a>
               <form th:action="@{|/admin/professors/${p.id}/delete|}" method="post" class="d-inline">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <button class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ce professeur ?')">Supprimer</button>
               </form>
             </div>
