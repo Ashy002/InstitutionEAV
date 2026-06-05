@@ -5,12 +5,14 @@ import com.school.repository.StudentRepository;
 import com.school.repository.SubjectRepository;
 import com.school.service.StatsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class StatsServiceImpl implements StatsService {
 
   private final GradeRepository gradeRepository;
