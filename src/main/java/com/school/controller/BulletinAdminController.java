@@ -4,6 +4,7 @@ import com.school.service.GradeService;
 import com.school.service.StudentService;
 import com.school.entity.Student;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.LinkedHashMap;
 
 @Controller
 @RequestMapping("/admin/bulletins")
+@Transactional(readOnly = true)
 public class BulletinAdminController {
 
   private final StudentService studentService;
@@ -47,6 +49,7 @@ public class BulletinAdminController {
   }
 
   @PostMapping("/{id}/delete")
+  @Transactional
   public String deleteBulletin(@PathVariable Long id) {
     gradeService.deleteByStudentId(id);
     return "redirect:/admin/bulletins";

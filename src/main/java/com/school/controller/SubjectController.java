@@ -5,12 +5,14 @@ import com.school.service.ProfessorService;
 import com.school.service.SubjectService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/subjects")
+@Transactional(readOnly = true)
 public class SubjectController {
 
   private final SubjectService subjectService;
@@ -35,6 +37,7 @@ public class SubjectController {
   }
 
   @PostMapping
+  @Transactional
   public String create(@Valid @ModelAttribute("subject") Subject subject, BindingResult result, Model model) {
     if (result.hasErrors()) {
       model.addAttribute("professors", professorService.findAll());
@@ -52,6 +55,7 @@ public class SubjectController {
   }
 
   @PostMapping("/{id}")
+  @Transactional
   public String update(@PathVariable Long id, @Valid @ModelAttribute("subject") Subject subject, BindingResult result, Model model) {
     if (result.hasErrors()) {
       model.addAttribute("professors", professorService.findAll());
@@ -63,6 +67,7 @@ public class SubjectController {
   }
 
   @PostMapping("/{id}/delete")
+  @Transactional
   public String delete(@PathVariable Long id) {
     subjectService.deleteById(id);
     return "redirect:/admin/subjects";

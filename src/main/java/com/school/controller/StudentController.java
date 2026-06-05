@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/students")
+@Transactional(readOnly = true)
 public class StudentController {
 
   private final StudentService studentService;
@@ -44,6 +46,7 @@ public class StudentController {
   }
 
   @PostMapping
+  @Transactional
   public String create(@Valid @ModelAttribute("student") Student student, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) return "admin/students/form";
     var creds = studentService.createWithAccount(student);
@@ -58,6 +61,7 @@ public class StudentController {
   }
 
   @PostMapping("/{id}")
+  @Transactional
   public String update(@PathVariable Long id, @Valid @ModelAttribute("student") Student student, BindingResult result) {
     if (result.hasErrors()) return "admin/students/form";
     student.setId(id);
@@ -66,6 +70,7 @@ public class StudentController {
   }
 
   @PostMapping("/{id}/delete")
+  @Transactional
   public String delete(@PathVariable Long id) {
     studentService.deleteById(id);
     return "redirect:/admin/students";

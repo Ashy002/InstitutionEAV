@@ -93,8 +93,8 @@ public class DataInitializer {
                 gradeRepository.save(new Grade(14.0, st, anglais));
             }
             
-            // Ajouter un étudiant échoué avec des notes faibles
-            Student stFail = new Student("Jean", "Martin", "jean.martin@student.com", "NS1");
+
+            Student stFail = new Student("Jean", "Martin", "jeanmartin@gmail.com", "NS1");
             stFail.setSecretCode("1234");
             stFail = studentRepository.save(stFail);
             

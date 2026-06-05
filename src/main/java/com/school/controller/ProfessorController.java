@@ -4,6 +4,7 @@ import com.school.entity.Professor;
 import com.school.service.ProfessorService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/professors")
+@Transactional(readOnly = true)
 public class ProfessorController {
 
   private final ProfessorService service;
@@ -32,6 +34,7 @@ public class ProfessorController {
   }
 
   @PostMapping
+  @Transactional
   public String create(@Valid @ModelAttribute("professor") Professor professor, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) return "admin/professors/form";
     var creds = service.createWithAccount(professor);
@@ -46,6 +49,7 @@ public class ProfessorController {
   }
 
   @PostMapping("/{id}")
+  @Transactional
   public String update(@PathVariable Long id, @Valid @ModelAttribute("professor") Professor professor, BindingResult result) {
     if (result.hasErrors()) return "admin/professors/form";
     professor.setId(id);
@@ -54,6 +58,7 @@ public class ProfessorController {
   }
 
   @PostMapping("/{id}/delete")
+  @Transactional
   public String delete(@PathVariable Long id) {
     service.deleteById(id);
     return "redirect:/admin/professors";

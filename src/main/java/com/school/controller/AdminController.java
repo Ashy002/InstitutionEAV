@@ -2,11 +2,13 @@ package com.school.controller;
 
 import com.school.service.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
+@Transactional(readOnly = true)
 public class AdminController {
 
   private final StudentService studentService;

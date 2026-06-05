@@ -5,12 +5,14 @@ import com.school.service.SubjectService;
 import com.school.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/professor")
+@Transactional(readOnly = true)
 public class ProfessorAreaController {
 
   private final UserService userService;

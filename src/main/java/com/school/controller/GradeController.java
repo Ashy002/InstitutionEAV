@@ -6,12 +6,14 @@ import com.school.service.StudentService;
 import com.school.service.SubjectService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/grades")
+@Transactional(readOnly = true)
 public class GradeController {
 
   private final GradeService gradeService;
@@ -45,6 +47,7 @@ public class GradeController {
   }
 
   @PostMapping
+  @Transactional
   public String create(@Valid @ModelAttribute("grade") Grade grade, BindingResult result,
       @RequestParam(required = false) Long studentId, Model model) {
     if (result.hasErrors()) {
@@ -75,6 +78,7 @@ public class GradeController {
   }
 
   @PostMapping("/{id}")
+  @Transactional
   public String update(@PathVariable Long id, @Valid @ModelAttribute("grade") Grade grade,
       BindingResult result, @RequestParam(required = false) Long studentId, Model model) {
     if (result.hasErrors()) {
@@ -93,6 +97,7 @@ public class GradeController {
   }
 
   @PostMapping("/{id}/delete")
+  @Transactional
   public String delete(@PathVariable Long id, @RequestParam(required = false) Long studentId) {
     gradeService.deleteById(id);
     if (studentId != null) return "redirect:/admin/students/" + studentId + "/bulletin";
