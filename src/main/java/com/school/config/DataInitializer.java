@@ -49,8 +49,13 @@ public class DataInitializer {
             professorRepository.save(new Professor("Jean", "Dupont", "jeandupont@gmail.com"))
         );
 
-        if (!userRepository.existsByUsername("professeur")) {
-            User pu = new User("professeur", passwordEncoder.encode("profEAV"), Role.PROFESSOR);
+        // Crée le user professeur seulement si aucun user n'est déjà lié à ce professor
+        boolean profUserExists = userRepository.findByProfessorId(prof.getId()).isPresent();
+        if (!profUserExists) {
+            String profUsername = "professeur";
+            // Supprime un éventuel user "professeur" orphelin (sans lien professor)
+            userRepository.findByUsername(profUsername).ifPresent(userRepository::delete);
+            User pu = new User(profUsername, passwordEncoder.encode("profEAV"), Role.PROFESSOR);
             pu.setProfessor(prof);
             userRepository.save(pu);
         }
