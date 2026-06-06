@@ -49,7 +49,7 @@ public class DataInitializer {
             professorRepository.save(new Professor("Jean", "Dupont", "jeandupont@gmail.com"))
         );
 
-        if (!userRepository.existsByUsername("prof1")) {
+        if (!userRepository.existsByUsername("professeur")) {
             User pu = new User("professeur", passwordEncoder.encode("profEAV"), Role.PROFESSOR);
             pu.setProfessor(prof);
             userRepository.save(pu);
