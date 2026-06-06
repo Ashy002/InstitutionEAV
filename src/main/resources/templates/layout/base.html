@@ -20,7 +20,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-lg-center">
-        <span sec:authorize="isAuthenticated()" sec:authentication="name">Utilisateur</span>
+        <li class="nav-item">
+          <span class="nav-link text-white-50 small" sec:authorize="isAuthenticated()" sec:authentication="name">Utilisateur</span>
+        </li>
         <li class="nav-item">
           <form th:action="@{/logout}" method="post" class="d-inline">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
