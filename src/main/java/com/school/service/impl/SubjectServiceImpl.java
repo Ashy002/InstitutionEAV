@@ -21,12 +21,12 @@ public class SubjectServiceImpl implements SubjectService {
 
   @Override
   public List<Subject> findAll() {
-    return repo.findAll();
+    return repo.findAllWithProfessor();
   }
 
   @Override
   public Subject findById(Long id) {
-    return repo.findById(id).orElseThrow(() -> new NotFoundException("Subject not found: " + id));
+    return repo.findByIdWithProfessor(id).orElseThrow(() -> new NotFoundException("Subject not found: " + id));
   }
 
   @Override

@@ -19,16 +19,16 @@ public class GradeServiceImpl implements GradeService {
     this.repo = repo;
   }
 
-  @Override public List<Grade> findAll() { return repo.findAll(); }
+  @Override public List<Grade> findAll() { return repo.findAllWithStudentAndSubject(); }
 
   @Override
   public Grade findById(Long id) {
-    return repo.findById(id).orElseThrow(() -> new NotFoundException("Note introuvable: " + id));
+    return repo.findByIdWithStudentAndSubject(id).orElseThrow(() -> new NotFoundException("Note introuvable: " + id));
   }
 
   @Override @Transactional public Grade save(Grade grade) { return repo.save(grade); }
   @Override @Transactional public void deleteById(Long id) { repo.deleteById(id); }
-  @Override public List<Grade> findByStudentId(Long studentId) { return repo.findByStudentId(studentId); }
+  @Override public List<Grade> findByStudentId(Long studentId) { return repo.findByStudentIdWithStudentAndSubject(studentId); }
   @Override public List<Grade> findByStudentIdSorted(Long studentId) { return repo.findByStudentIdOrderBySubjectNameAsc(studentId); }
   @Override @Transactional public void deleteByStudentId(Long studentId) { repo.deleteByStudentId(studentId); }
 }
