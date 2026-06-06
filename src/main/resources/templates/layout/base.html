@@ -19,51 +19,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-
-        <!-- Liens ADMIN -->
-        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-          <a class="nav-link" th:href="@{/admin/dashboard}">Tableau de bord</a>
-        </li>
-        <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Gestion</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{/admin/students}">Étudiants</a></li>
-            <li><a class="dropdown-item" th:href="@{/admin/professors}">Professeurs</a></li>
-            <li><a class="dropdown-item" th:href="@{/admin/subjects}">Matières</a></li>
-            <li><a class="dropdown-item" th:href="@{/admin/grades}">Notes</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" th:href="@{/admin/stats}">Statistiques</a></li>
-          </ul>
-        </li>
-
-        <!-- Liens PROFESSEUR -->
-        <li class="nav-item" sec:authorize="hasRole('PROFESSOR')">
-          <a class="nav-link" th:href="@{/professor/dashboard}">Tableau de bord</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('PROFESSOR')">
-          <a class="nav-link" th:href="@{/professor/grades}">Notes</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('PROFESSOR')">
-          <a class="nav-link" th:href="@{/professor/subjects}">Matières</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('PROFESSOR')">
-          <a class="nav-link" th:href="@{/professor/stats}">Statistiques</a>
-        </li>
-
-        <!-- Liens ETUDIANT -->
-        <li class="nav-item" sec:authorize="hasRole('STUDENT')">
-          <a class="nav-link" th:href="@{/student/dashboard}">Mon espace</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('STUDENT')">
-          <a class="nav-link" th:href="@{/student/bulletin}">Mon bulletin</a>
-        </li>
-
-      </ul>
-      <ul class="navbar-nav align-items-lg-center">
-        <li class="nav-item">
-          <span class="nav-link text-white-50 small" sec:authorize="isAuthenticated()" sec:authentication="name">Utilisateur</span>
-        </li>
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <span sec:authorize="isAuthenticated()" sec:authentication="name">Utilisateur</span>
         <li class="nav-item">
           <form th:action="@{/logout}" method="post" class="d-inline">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
